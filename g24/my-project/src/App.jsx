@@ -11,7 +11,10 @@ function App() {
         <Card title="One" width={200}></Card>
         <Card title="Two" width={100}></Card>
         <Card title="Three"></Card>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e5c0678e856bcdeed032ab5e5fde35de49d655af
       </div>
     </>
 
