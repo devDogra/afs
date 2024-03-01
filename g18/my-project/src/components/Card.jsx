@@ -24,6 +24,9 @@ function Card({ title, width, children }) {
                 </>
                 )
             }
+            <button className="bg-green-300 ">
+                CLICK ME 
+            </button>
         </div>
     )
 }
