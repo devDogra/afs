@@ -1,13 +1,31 @@
 import './App.css'
 import Card from './components/Card'
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+
 
 function App() {
   const inputRef = useRef(null); 
+  
+  const localStorageNames = JSON.parse(localStorage.getItem("names"))
+  const [names, setNames] = useState(localStorageNames || [])
 
-  const [names, setNames] = useState([
-    "A", "B", "C", "D",
-  ])
+  useEffect(getProductsFromAPI, [])
+  useEffect(saveNamesInLocalStorage, [names])
+
+  function getProductsFromAPI() {
+    fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then(products => {
+          const productNames = products.map(p => p.title); 
+          setNames(productNames); 
+        });
+  }
+
+  function saveNamesInLocalStorage() {
+    const key = "names"; 
+    const value = JSON.stringify(names);
+    localStorage.setItem(key, value); 
+  }
 
   // [a, b, c, d] old
   // [a, b, c, d, m] NEW
