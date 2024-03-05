@@ -1,0 +1,40 @@
+React:
+	Tailwind
+	Vite
+	DOM and Virtual DOM
+
+Components:
+	What they are
+	How to create them
+	Importing/Exporting components
+	Advantages
+JSX:
+	What it is
+	Rules of JSX (className vs class, fragments)
+	Curly braces
+Props:
+	What and why
+	Children props
+	Prop destructuring
+
+Rendering lists
+	.map()
+	keys 
+
+Event handling
+	onClick={handleCLick} etc.
+	onClick={(e) => handleCLick(x)} (Arrow funcs)
+	onClick={handleCLick(x)} (DOESNT WORK)
+State
+	useState(), why normal variables don't work
+	Arrays in useState()
+	State vs Props
+
+Refs
+	Use of useRef()
+
+useEffect
+	Use of useEffect()
+	Dependency array
+	Example use cases - APIs, localStorage, etc. 
+	
