@@ -1,4 +1,5 @@
 import CardImg from "../assets/desert.jpeg"
+import { useState, useRef } from "react";
 
 function Card({ title, width, children }) {
 
@@ -10,6 +11,21 @@ function Card({ title, width, children }) {
     //     )
     // }
 
+    // let count = 0; 
+    const [count, setCount] = useState(0)
+    const titleRef = useRef(null); 
+
+
+    function handleClick() {
+        // count++; 
+        setCount(count + 1)
+    }
+
+    function deleteTitle() {
+        const p = titleRef.current
+        p.remove(); 
+    }
+
     return (
         <div className=" inline-block  border-4 border-red-600">
            { 
@@ -20,12 +36,15 @@ function Card({ title, width, children }) {
                         width={width || 100}
                         src={CardImg}
                     />
-                    <p> { title } </p>
+                    <p ref={titleRef}> { title } </p>
                 </>
                 )
             }
-            <button className="bg-green-300 ">
-                CLICK ME 
+            <button onClick={handleClick} className="bg-green-300 hover:bg-red-300">
+                CLICKS {count}
+            </button>
+            <button onClick={deleteTitle} className="bg-green-300 hover:bg-blue-300">
+                Delete title 
             </button>
         </div>
     )

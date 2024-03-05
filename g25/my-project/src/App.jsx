@@ -1,33 +1,37 @@
 import './App.css'
 import Card from './components/Card'
+import { useRef, useState } from 'react';
 
 function App() {
-  const persons = [
-    { name: "Dev", company: "Coding Blocks", },
-    { name: "Vishakha", company: "Microsoft" },
-]
+  
+  const [names, setNames] = useState([ "A", "B", "C", "D" ])
+
+  const refInput = useRef(null); 
+
+  // [ a, b, c, d] old
+  // [a, b, c, d, p] new
+  function addCard() {
+    const value = refInput.current.value;
+    const newNames = [...names, value];
+    setNames(newNames);
+  }
 
   return (
     <>
-      <h1 className="underline font-bold text-xl">Cards</h1>
-      <div>
-        <Card title="One" width={200}></Card>
-        <Card title="Two" width={50}></Card>
-        <Card title="Three"></Card>
-      </div>
-
       {
-        persons.map(p => {
+        names.map(p => {
           return (
-            <Card>
-              <h1 className='text-2xl'>{ p.name }</h1>
-              <h2 className='text-lg'>{ p.company }</h2>
-            </Card>
+            <Card key={p} title={p}/>
           )
         })
       }
 
-
+      <input ref={refInput} placeholder="enter title"></input>
+      <button 
+      onClick={addCard}
+      className="bg-green-200 hover:bg-green-500">
+        Add Card
+      </button>
     </>
   )
 }
