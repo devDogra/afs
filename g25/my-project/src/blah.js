@@ -1,5 +1,8 @@
-// <h1>Saakshi</h1>
+const products = [ 
+    { id: 100, title: "eraser", price: 10},
+    { id: 101, title: "pencil", price: 10}
+]
 
-const h1 = document.querySelector("h1"); 
+const productNames = products.map(p => p.title);
 
-h1.innerText = "Dev"; 
+["eraser", "pencil"]

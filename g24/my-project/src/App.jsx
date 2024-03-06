@@ -1,17 +1,35 @@
 import './App.css'
 import Card from './components/Card'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 function App() {
   const inputRef = useRef(null);
 
-  const data = [
-    { title: "One", width: 200, id: 10001},
-    { title: "Two", width: 100, id: 10002},
-    { title: "Three", width: 150, id: 10003},
-  ]
-  
-  const [cards, setCards] = useState(data)
+
+  const localStorageCards = JSON.parse(localStorage.getItem("cards")); 
+  const [cards, setCards] = useState(localStorageCards || [])
+
+
+  //                                    v dependency array
+  useEffect(saveCardsInLocalStorage, [cards])
+  useEffect(getProductsFromAPI, []) // Runs only on initial/first render
+
+  function getProductsFromAPI() {
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then(products => {
+        setCards(products); 
+      })
+  }
+
+
+
+
+  function saveCardsInLocalStorage() {
+    const key = "cards"; 
+    const value = JSON.stringify(cards); 
+    localStorage.setItem(key, value); 
+  }
 
   // [a, b, c] OLD  + d VALUE = 
   // [a, b, c, d] NEW
