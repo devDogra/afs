@@ -1,7 +1,7 @@
 import CardImg from "../assets/desert.jpeg"
 import { useState, useRef } from "react";
 
-function Card({ title, width, children }) {
+function Card({ title, width, children, deleteCard }) {
 
     // if (children) {
     //     return (
@@ -45,6 +45,12 @@ function Card({ title, width, children }) {
             </button>
             <button onClick={deleteTitle} className="bg-green-300 hover:bg-blue-300">
                 Delete title 
+            </button>
+
+            <button onClick={() => {
+                deleteCard(title); 
+            }} className="bg-green-300 hover:bg-blue-300">
+                Delete Card
             </button>
         </div>
     )

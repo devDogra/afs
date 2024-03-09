@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import CardImg from "../assets/desert.jpeg"
 
-function Card({title,width, children}){
+function Card({title,width, children, deleteCard}){
     // let clicks = 0; 
     const [clicks, setClicks] = useState(0)
     const titleRef = useRef(null)
@@ -44,6 +44,14 @@ function Card({title,width, children}){
                 onClick={deleteTitle}
             >
                 Delete Title
+            </button>
+            <button
+                className="bg-red-300 hover:bg-blue-300"
+                onClick={() => {
+                    deleteCard(title); 
+                }}
+            >
+                Delete Card
             </button>
         </div>
     )

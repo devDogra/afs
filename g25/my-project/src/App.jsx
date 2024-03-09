@@ -1,6 +1,8 @@
 import './App.css'
 import Card from './components/Card'
 import { useRef, useState, useEffect } from 'react';
+import AddCard from './components/AddCard';
+import CardList from './components/CardList';
 
 function App() {
   
@@ -11,19 +13,19 @@ function App() {
   
   const [names, setNames] = useState(namesInLocalStorage || [])
 
-  const refInput = useRef(null); 
+ 
   //                     v dependency array
   useEffect(saveCardsInLocalStorage, [names])
-  useEffect(getProductsFromAPI, []);
+  // useEffect(getProductsFromAPI, []);
 
-  function getProductsFromAPI() {
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(products => {
-        const productNames = products.map(p => p.title);
-        setNames(productNames); 
-      })
-  }
+  // function getProductsFromAPI() {
+  //   fetch('https://fakestoreapi.com/products')
+  //     .then(res => res.json())
+  //     .then(products => {
+  //       const productNames = products.map(p => p.title);
+  //       setNames(productNames); 
+  //     })
+  // }
 
   function saveCardsInLocalStorage() {
     const key = "names";
@@ -34,28 +36,20 @@ function App() {
 
   // [ a, b, c, d] old
   // [a, b, c, d, p] new
-  function addCard() {
-    const value = refInput.current.value;
+  function addCard(value) {
     const newNames = [...names, value];
     setNames(newNames);
   }
 
+  function deleteCard(title) {
+    const newNames = names.filter(n => n !== title); 
+    setNames(newNames); 
+  }
+
   return (
     <>
-      {
-        names.map(p => {
-          return (
-            <Card key={p} title={p}/>
-          )
-        })
-      }
-
-      <input ref={refInput} placeholder="enter title"></input>
-      <button 
-      onClick={addCard}
-      className="bg-green-200 hover:bg-green-500">
-        Add Card
-      </button>
+      <CardList names={names} deleteCard={deleteCard}/>
+      <AddCard addCard={addCard}/>
     </>
   )
 }

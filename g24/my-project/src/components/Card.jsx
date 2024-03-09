@@ -2,7 +2,7 @@ import desertImg from "../assets/desert.jpeg"
 import { useState, useRef } from "react";
 
 // extension: tailwind css intellisense
-function Card({title, width, children}) {
+function Card({title, width, children, deleteCard}) {
 
     // let clicks = 0; 
     const [clicks, setClicks] = useState(0)
@@ -45,6 +45,12 @@ function Card({title, width, children}) {
             onClick={deleteTitle}
             className="hover:bg-green-300">
                 Delete Title
+            </button>
+
+            <button 
+            onClick={() => deleteCard(title)}
+            className="hover:bg-green-300">
+                Delete Card
             </button>
 
         </div>
