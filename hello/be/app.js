@@ -1,0 +1,9 @@
+const express = require('express'); 
+const app = express() ;
+app.listen(3000, () => console.log("http://localhost:3000")); 
+
+
+
+app.post('/hi', (req, res) => {
+    res.send("HELLO"); 
+})
