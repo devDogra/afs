@@ -1,19 +1,16 @@
-const express = require('express'); 
+// const express = require('express'); 
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 import express from 'express'; 
 
-async function main() {
-    await prisma.user.create({
-        data: {
-            email: "devdogra1@gmail.com",
-            name: "Dev",
-        }
-    })
-}
-main(); 
+import userRouter from "./routers/userRouter.js"
 
 const app = express(); 
+app.use(express.json()); 
+app.use(express.urlencoded()); 
+app.use('/users', userRouter); 
+
+
 
 
 app.listen(3000, () => console.log("http://localhost:3000")); 
