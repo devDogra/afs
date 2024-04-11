@@ -1,0 +1,14 @@
+#board {
+    border: 10px solid black; 
+    height: 300px; 
+    width: 300px;
+
+    /* display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 50px); */
+}
+.square {
+    border: 5px solid black; 
+    font-size: 4rem;
+    height = BOARD / N
+}
