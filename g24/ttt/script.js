@@ -1,3 +1,12 @@
+const socket = io();
+
+socket.on("serverRecdMove", data => {
+    const { move, sqIdx } = data; 
+    const squares = Array.from(document.querySelectorAll(".square"))
+    squares[sqIdx].innerText = move; 
+    
+})
+
 const board = document.querySelector("#board"); 
 const isClicked = Array(9).fill(false); 
 
@@ -21,9 +30,10 @@ board.addEventListener("click", e => {
 
     clickedEl.innerText = flag ? "X" : "O"; 
 
-
     isClicked[sqIdx] = true; 
     flag = !flag;
+
+    socket.emit("playerMoved", { move: clickedEl.innerText, sqIdx })
 })
 
 createBoard(); 
